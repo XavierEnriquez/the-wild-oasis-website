@@ -1,3 +1,8 @@
+# The Wild Oasis Website Project - Section:33
+
+A project from Udemy "Ultimate React Course 2024: React, Next.js, Redux & More" by Jonas Schmedtmann.
+Part 5: Sectio:33 Lecture:431 Project: "The Wild Oasis Website"
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
