@@ -1,10 +1,15 @@
 // import { unstable_noStore as noStore } from "next/cache";
 
+// The noStore function was used to optout a component from caching, noStore was deprecated as of nextjs 15.
+// The connection() function is now recomended.
+import { connection } from "next/server";
+
 import { getCabins } from "@/app/_lib/data-service";
 import CabinCard from "@/app/_components/CabinCard";
 
 async function CabinList({ filter }) {
-  // noStore();
+  // noStore(); // Deprecated. Use connection() as of nextjs.15
+  await connection();
 
   const cabins = await getCabins();
 
