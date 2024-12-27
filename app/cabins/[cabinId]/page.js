@@ -10,12 +10,15 @@ import { Suspense } from "react";
 //   title: "Cabin",
 // };
 
+// generateMetadata is a nextjs function use to dynamically generate a page metadata. Usefull for cms pages.
 export async function generateMetadata({ params }) {
   const { cabinId } = await params;
   const { name } = await getCabin(cabinId);
   return { title: `Cabin ${name}` };
 }
 
+// generateStaticParams is a nextjs function that helps nextjs build in advance the urls of the pages to be rendered (i.e. cms pages),
+// therefore allowing for these pages to be statically rendered instead of dynamically rendered, helping improve app/site performance.
 export async function generateStaticParams() {
   const cabins = await getCabins();
 
