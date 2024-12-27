@@ -5,19 +5,21 @@ import Spinner from "../_components/Spinner";
 import Filter from "../_components/Filter";
 // import ReservationReminder from "../_components/ReservationReminder";
 
+// nextjs function revalidate. Is used to revalidate (re-fech) the cached data in the component. In seconds.
 export const revalidate = 3600;
-// export const revalidate = 15;
 
 export const metadata = {
   title: "Cabins",
 };
 
-//Converted to async function and awaited searchParams per nextjs warning error
+// Converted to async function and awaited searchParams per nextjs warning error
 export default async function Page({ searchParams }) {
   const { capacity } = await searchParams;
 
   const filter = capacity ?? "all";
 
+  // Notice the CabinList component is inside a nextjs Suspense component.
+  // This is because CabinList is optout of caching therefore needs to be rendered after it has finished fetching.
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
