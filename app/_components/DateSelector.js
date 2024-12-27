@@ -13,8 +13,8 @@ import { useReservation } from "./ReservationContext";
 
 function isAlreadyBooked(range, datesArr) {
   return (
-    range.from &&
-    range.to &&
+    range?.from &&
+    range?.to &&
     datesArr.some((date) =>
       isWithinInterval(date, { start: range.from, end: range.to })
     )
@@ -27,10 +27,17 @@ function DateSelector({ settings, cabin, bookedDates }) {
   const displayRange = isAlreadyBooked(range, bookedDates) ? {} : range;
 
   const { regularPrice, discount } = cabin;
-  const numNights = differenceInDays(displayRange.to, displayRange.from);
+
+  const numNights = differenceInDays(displayRange?.to, displayRange?.from);
   const cabinPrice = numNights * (regularPrice - discount);
 
   const { minBookingLength, maxBookingLength } = settings;
+
+  const today = new Date();
+  const nextMonth = today.getMonth() === 11 ? 1 : today.getMonth() + 2;
+  const year =
+    today.getMonth() === 11 ? today.getFullYear() + 1 : today.getFullYear();
+  const endMonth = new Date(year, nextMonth);
 
   return (
     <div className="flex flex-col justify-between">
@@ -39,12 +46,10 @@ function DateSelector({ settings, cabin, bookedDates }) {
         mode="range"
         onSelect={setRange}
         selected={displayRange}
-        min={minBookingLength + 1}
+        min={minBookingLength}
         max={maxBookingLength}
-        startMonth={new Date()}
-        endMonth={new Date()}
-        // fromDate={new Date()}
-        // toYear={new Date().getFullYear() + 5}
+        startMonth={today}
+        endMonth={endMonth}
         captionLayout="dropdown"
         numberOfMonths={2}
         disabled={(curDate) =>
@@ -81,7 +86,7 @@ function DateSelector({ settings, cabin, bookedDates }) {
           ) : null}
         </div>
 
-        {range.from || range.to ? (
+        {range?.from || range?.to ? (
           <button
             className="border border-primary-800 py-2 px-4 text-sm font-semibold"
             onClick={resetRange}
