@@ -15,16 +15,27 @@ async function CabinList({ filter }) {
 
   if (!cabins.length) return null;
 
-  let displayedCabins;
-  if (filter === "all") displayedCabins = cabins;
-  if (filter === "small")
-    displayedCabins = cabins.filter((cabin) => cabin.maxCapacity <= 3);
-  if (filter === "medium")
-    displayedCabins = cabins.filter(
-      (cabin) => cabin.maxCapacity >= 4 && cabin.maxCapacity <= 7
-    );
-  if (filter === "large")
-    displayedCabins = cabins.filter((cabin) => cabin.maxCapacity >= 8);
+  // let displayedCabins;
+  // if (filter === "all") displayedCabins = cabins;
+  // if (filter === "small")
+  //   displayedCabins = cabins.filter((cabin) => cabin.maxCapacity <= 3);
+  // if (filter === "medium")
+  //   displayedCabins = cabins.filter(
+  //     (cabin) => cabin.maxCapacity >= 4 && cabin.maxCapacity <= 7
+  //   );
+  // if (filter === "large")
+  //   displayedCabins = cabins.filter((cabin) => cabin.maxCapacity >= 8);
+
+  // Other option to if statments
+  const displayedCabins =
+    {
+      all: cabins,
+      small: cabins.filter((cabin) => cabin.maxCapacity <= 3),
+      medium: cabins.filter(
+        (cabin) => cabin.maxCapacity >= 4 && cabin.maxCapacity <= 7
+      ),
+      large: cabins.filter((cabin) => cabin.maxCapacity >= 8),
+    }[filter] || cabins; // Default to showing all cabins if the filter is invalid
 
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
