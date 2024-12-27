@@ -3,7 +3,7 @@ import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
 // import Counter from "../_components/Counter";
 import Filter from "../_components/Filter";
-// import ReservationReminder from "../_components/ReservationReminder";
+import ReservationReminder from "../_components/ReservationReminder";
 
 // export const revalidate = 3600;
 // nextjs function revalidate is used to re-fech the cached data in a client component. The passed value is in seconds.
@@ -40,7 +40,7 @@ export default async function Page({ searchParams }) {
 
       <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
-        {/* <ReservationReminder /> */}
+        <ReservationReminder />
       </Suspense>
     </div>
   );
