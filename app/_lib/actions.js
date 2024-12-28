@@ -1,8 +1,8 @@
 "use server";
 
-// import { auth, signIn, signOut } from "./auth";
-// import { getBookings } from "./data-service";
-// import { supabase } from "./supabase";
+import { auth, signIn, signOut } from "./auth";
+import { getBookings } from "./data-service";
+import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
