@@ -10,8 +10,8 @@ function ReservationForm({ cabin, user }) {
   const { range, resetRange } = useReservation();
   const { maxCapacity, regularPrice, discount, id } = cabin;
 
-  const startDate = range.from;
-  const endDate = range.to;
+  const startDate = range?.from;
+  const endDate = range?.to;
 
   const numNights = differenceInDays(endDate, startDate);
   const cabinPrice = numNights * (regularPrice - discount);
@@ -38,6 +38,8 @@ function ReservationForm({ cabin, user }) {
             className="h-8 rounded-full"
             src={user.image}
             alt={user.name}
+            width="30"
+            height="30"
           />
           <p>{user.name}</p>
         </div>
