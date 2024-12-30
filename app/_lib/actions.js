@@ -10,6 +10,7 @@ export async function updateGuest(formData) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
+  // formData() is a XMLHttpRequest API function. https://developer.mozilla.org/en-US/docs/Web/API/FormData
   const nationalID = formData.get("nationalID");
   const [nationality, countryFlag] = formData.get("nationality").split("%");
 
@@ -111,6 +112,8 @@ export async function updateBooking(formData) {
   // 7) Redirecting
   redirect("/account/reservations");
 }
+
+////// Sign in / Sign out
 
 export async function signInAction() {
   await signIn("google", { redirectTo: "/account" });
