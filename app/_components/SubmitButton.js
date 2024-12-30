@@ -2,6 +2,7 @@
 
 import { useFormStatus } from "react-dom";
 
+// useFormStatus can only be consumed INSIDE a form. SubmitButton needs to be inside the form when clicked
 export default function SubmitButton({ children, pendingLabel }) {
   const { pending } = useFormStatus();
 
