@@ -11,22 +11,28 @@ import Link from "next/link";
 export default function GuestLink() {
   const session = useAuth();
 
+  const avatar = session?.user?.image;
+
+  console.log(avatar);
+
   return (
     <li>
-      {session?.user?.image ? (
+      {avatar ? (
         <Link
           href="/account"
           className="hover:text-accent-400 transition-colors flex justify-between items-center gap-4"
         >
           <span>Guest area</span>
-          <Image
-            className="h-8 rounded-full"
-            src={session.user.image}
-            alt={session.user.name}
-            width="30"
-            height="30"
-            referrerPolicy="no-referrer"
-          />
+          <div className="relative h-9 aspect-square">
+            <Image
+              className="object-cover rounded-full"
+              src={session.user.image}
+              alt={session.user.name}
+              fill
+              // Important to display google profile images// referrerPolicy="no-referrer"
+              referrerPolicy="no-referrer"
+            />
+          </div>
         </Link>
       ) : (
         <Link
