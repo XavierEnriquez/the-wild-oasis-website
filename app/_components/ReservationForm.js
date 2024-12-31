@@ -32,15 +32,16 @@ function ReservationForm({ cabin, user }) {
         <p>Logged in as</p>
 
         <div className="flex gap-4 items-center">
-          <Image
-            // Important to display google profile images
-            referrerPolicy="no-referrer"
-            className="h-8 rounded-full"
-            src={user.image}
-            alt={user.name}
-            width="30"
-            height="30"
-          />
+          <div className="relative h-9 aspect-square">
+            <Image
+              className="object-cover rounded-full"
+              src={user.image}
+              alt={user.name}
+              fill
+              // Important to display google profile images// referrerPolicy="no-referrer"
+              referrerPolicy="no-referrer"
+            />
+          </div>
           <p>{user.name}</p>
         </div>
       </div>
@@ -54,10 +55,10 @@ function ReservationForm({ cabin, user }) {
         className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
       >
         <div className="space-y-2">
-          <label htmlFor="numGuests">How many guests?</label>
+          <label htmlFor="numGuest">How many guests?</label>
           <select
-            name="numGuests"
-            id="numGuests"
+            name="numGuest"
+            id="numGuest"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
             required
           >
