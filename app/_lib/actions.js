@@ -1,10 +1,12 @@
 "use server";
 
-import { auth, signIn, signOut } from "./auth";
-import { getBookings } from "./data-service";
 import { supabase } from "./supabase";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { getBookings } from "./data-service";
+import { auth, signIn, signOut } from "./auth";
+
+////// UPDATE GUEST
 
 export async function updateGuest(formData) {
   const session = await auth();
@@ -14,12 +16,12 @@ export async function updateGuest(formData) {
   const nationalID = formData.get("nationalID");
   const [nationality, countryFlag] = formData.get("nationality").split("%");
 
-  if (!/^[a-zA-Z0-9]{6,12}$/.test(nationalID))
+  if (!/^[a-zA-Z0-9]{3,48}$/.test(nationalID))
     throw new Error("Please provide a valid national ID");
 
   const updateData = { nationality, countryFlag, nationalID };
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("guests")
     .update(updateData)
     .eq("id", session.user.guestId);
@@ -29,6 +31,8 @@ export async function updateGuest(formData) {
   revalidatePath("/account/profile");
 }
 
+////// CREATE BOOKINGS
+
 export async function createBooking(bookingData, formData) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
@@ -36,7 +40,8 @@ export async function createBooking(bookingData, formData) {
   const newBooking = {
     ...bookingData,
     guestId: session.user.guestId,
-    numGuests: Number(formData.get("numGuests")),
+    numGuest: Number(formData.get("numGuest")),
+    // Using .slice() to limit text input from 0 to 1000 characters
     observations: formData.get("observations").slice(0, 1000),
     extrasPrice: 0,
     totalPrice: bookingData.cabinPrice,
@@ -53,6 +58,8 @@ export async function createBooking(bookingData, formData) {
 
   redirect("/cabins/thankyou");
 }
+
+////// DELETE BOOKINGS
 
 export async function deleteBooking(bookingId) {
   const session = await auth();
@@ -74,6 +81,8 @@ export async function deleteBooking(bookingId) {
   revalidatePath("/account/reservations");
 }
 
+/////// UPDATE BOOKINGS
+
 export async function updateBooking(formData) {
   const bookingId = Number(formData.get("bookingId"));
 
@@ -90,7 +99,7 @@ export async function updateBooking(formData) {
 
   // 3) Building update data
   const updateData = {
-    numGuests: Number(formData.get("numGuests")),
+    numGuest: Number(formData.get("numGuest")),
     observations: formData.get("observations").slice(0, 1000),
   };
 
@@ -113,7 +122,7 @@ export async function updateBooking(formData) {
   redirect("/account/reservations");
 }
 
-////// Sign in / Sign out
+////// SIGN IN / OUT
 
 export async function signInAction() {
   await signIn("google", { redirectTo: "/account" });
@@ -121,4 +130,5 @@ export async function signInAction() {
 
 export async function signOutAction() {
   await signOut({ redirectTo: "/" });
+  revalidatePath("/");
 }
