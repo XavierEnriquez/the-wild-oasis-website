@@ -130,6 +130,9 @@ export async function getBookedDatesByCabinId(cabinId) {
   return bookedDates;
 }
 
+////////////////////
+////// GET SETTINGS
+
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
 
@@ -155,8 +158,8 @@ export async function getCountries() {
   }
 }
 
-/////////////
-// CREATE
+////////////////////
+////// CREATE GUEST
 
 export async function createGuest(newGuest) {
   const { data, error } = await supabase.from("guests").insert([newGuest]);
@@ -169,26 +172,8 @@ export async function createGuest(newGuest) {
   return data;
 }
 
-/////////////////////////////////////
-
-export async function createBooking(newBooking) {
-  const { data, error } = await supabase
-    .from("bookings")
-    .insert([newBooking])
-    // So that the newly created object gets returned!
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error("Booking could not be created");
-  }
-
-  return data;
-}
-
-/////////////
-// UPDATE
+///////////////////
+////// UPDATE GUEST
 
 // The updatedFields is an object which should ONLY contain the updated data
 export async function updateGuest(id, updatedFields) {
@@ -206,6 +191,28 @@ export async function updateGuest(id, updatedFields) {
   return data;
 }
 
+//////////////////////
+////// CREATE BOOKING
+
+export async function createBooking(newBooking) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .insert([newBooking])
+    // So that the newly created object gets returned!
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be created");
+  }
+
+  return data;
+}
+
+/////////////////////
+////// UPDATE BOOKING
+
 export async function updateBooking(id, updatedFields) {
   const { data, error } = await supabase
     .from("bookings")
@@ -221,8 +228,8 @@ export async function updateBooking(id, updatedFields) {
   return data;
 }
 
-/////////////
-// DELETE
+/////////////////////
+////// DELETE BOOKING
 
 export async function deleteBooking(id) {
   const { data, error } = await supabase.from("bookings").delete().eq("id", id);
