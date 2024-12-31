@@ -1,10 +1,25 @@
 import SubmitButton from "@/app/_components/SubmitButton";
 import { updateBooking } from "@/app/_lib/actions";
-import { getBooking, getCabin } from "@/app/_lib/data-service";
+import { auth } from "@/app/_lib/auth";
+import { getBooking, getBookings, getCabin } from "@/app/_lib/data-service";
 
 export default async function Page({ params }) {
-  const { bookingId } = params;
-  const { numGuests, observations, cabinId } = await getBooking(bookingId);
+  const { bookingId } = await params;
+
+  // Check if user is logged-in
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
+  //  get the IDs of all bookings made by the user.
+  const guestBookings = await getBookings(session.user.guestId);
+  const guestBookingIds = guestBookings.map((booking) => booking.id);
+
+  // Throw an error if the booking does not belong to the user.
+  if (!guestBookingIds.includes(Number(bookingId)))
+    throw new Error("No matching bookings");
+
+  const { numGuest, observations, cabinId } = await getBooking(bookingId);
+
   const { maxCapacity } = await getCabin(cabinId);
 
   return (
@@ -20,11 +35,11 @@ export default async function Page({ params }) {
         <input type="hidden" value={bookingId} name="bookingId" />
 
         <div className="space-y-2">
-          <label htmlFor="numGuests">How many guests?</label>
+          <label htmlFor="numGuest">How many guests?</label>
           <select
-            name="numGuests"
-            id="numGuests"
-            defaultValue={numGuests}
+            name="numGuest"
+            id="numGuest"
+            defaultValue={numGuest}
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
             required
           >
