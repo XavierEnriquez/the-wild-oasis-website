@@ -27,10 +27,10 @@ function ReservationCard({ booking, onDelete }) {
     <div className="flex border border-primary-800">
       <div className="relative h-32 aspect-square">
         <Image
+          className="object-cover border-r border-primary-800"
           src={image}
           alt={`Cabin ${name}`}
           fill
-          className="object-cover border-r border-primary-800"
         />
       </div>
 
