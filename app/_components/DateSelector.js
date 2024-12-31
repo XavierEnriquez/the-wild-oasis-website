@@ -34,7 +34,7 @@ function DateSelector({ settings, cabin, bookedDates }) {
   const { minBookingLength, maxBookingLength } = settings;
 
   const today = new Date();
-  const nextMonth = today.getMonth() === 11 ? 1 : today.getMonth() + 2;
+  const nextMonth = today.getMonth() === 11 ? 0 : today.getMonth() + 1;
   const year =
     today.getMonth() === 11 ? today.getFullYear() + 1 : today.getFullYear();
   const endMonth = new Date(year, nextMonth);
