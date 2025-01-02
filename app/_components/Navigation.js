@@ -1,12 +1,13 @@
 import Link from "next/link";
 import GuestLink from "./GuestLink";
-// import { auth } from "../_lib/auth";
 
 // A change from Jonas code. Created GuestLink and AuthContext, then wrapped the app's html in layout
 // inside AuthProvider and SessionProvider to make it possible to still show the avatar or whatever
 // session info in the Navigation component, without making the whole app dynamic.
 
-export default async function Navigation() {
+// import { auth } from "../_lib/auth";
+
+export default function Navigation() {
   // Changed Jonas code. See notes above.
   // const session = await auth();
 
@@ -29,6 +30,7 @@ export default async function Navigation() {
             About
           </Link>
         </li>
+
         <GuestLink />
       </ul>
     </nav>
