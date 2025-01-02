@@ -12,7 +12,7 @@ import "@/app/_styles/globals.css";
 import Header from "@/app/_components/Header";
 import { ReservationProvider } from "@/app/_components/ReservationContext";
 import { SessionProvider } from "next-auth/react";
-import { AuthProvider } from "@/app/_lib/AuthContext";
+import { AuthProvider } from "@/app/_components/AuthContext";
 
 export const metadata = {
   title: {
