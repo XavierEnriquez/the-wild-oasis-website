@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "../_lib/AuthContext";
+import { useAuth } from "./AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,13 +11,9 @@ import Link from "next/link";
 export default function GuestLink() {
   const session = useAuth();
 
-  const avatar = session?.user?.image;
-
-  console.log(avatar);
-
   return (
     <li>
-      {avatar ? (
+      {session?.user?.image ? (
         <Link
           href="/account"
           className="hover:text-accent-400 transition-colors flex justify-between items-center gap-4"
