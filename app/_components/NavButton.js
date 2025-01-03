@@ -12,8 +12,8 @@ export default function NavButton({ children, onClick }) {
   const session = useAuth();
 
   return (
-    <div className="grid gap-4 grid-cols-2 ">
-      <div className="relative h-9 aspect-square">
+    <div className="flex items-center gap-4 grid-cols-2 ">
+      <div className="relative h-8 aspect-square">
         {session?.user?.image && (
           <Image
             className=" object-cover rounded-full"
@@ -25,7 +25,7 @@ export default function NavButton({ children, onClick }) {
           />
         )}
       </div>
-      <button className="relative z-[99] h-9 aspect-square" onClick={onClick}>
+      <button className="relative z-[99] h-6 aspect-square" onClick={onClick}>
         <Bars4Icon />
       </button>
       {children}
