@@ -31,8 +31,8 @@ function SideNavigation() {
   const pathname = usePathname();
 
   return (
-    <nav className=" overflow-hidden border-r border-primary-900 ">
-      <ul className="flex flex-col gap-2 h-full text-lg mr-auto">
+    <nav className="w-full md:relative md:w-14 md:overflow-clip border-r border-primary-900 ">
+      <ul className="relative flex flex-row-reverse justify-center md:flex-col  w-full lg:min-w-48 gap-2 h-full text-lg">
         {navLinks.map((link) => (
           <li key={link.name}>
             <Link
@@ -42,9 +42,7 @@ function SideNavigation() {
               href={link.href}
             >
               {link.icon}
-              <span className="hidden lg:inline-block lg:w-36 ">
-                {link.name}
-              </span>
+              <span className="hidden lg:inline-block ">{link.name}</span>
             </Link>
           </li>
         ))}
