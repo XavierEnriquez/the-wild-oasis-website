@@ -16,7 +16,7 @@ export default function GuestLink() {
       {session?.user?.image ? (
         <Link
           href="/account"
-          className="hover:text-accent-400 transition-colors flex justify-between items-center gap-4 rounded-md px-3 py-2 text-base font-medium hover:bg-primary-900"
+          className="hover:text-accent-400 transition-colors flex justify-between items-center gap-4 rounded-md px-3 py-2 text-base font-medium  hover:bg-primary-900"
         >
           <span>Guest area</span>
           <div className=" hidden lg:block relative h-9 aspect-square">
@@ -33,7 +33,7 @@ export default function GuestLink() {
       ) : (
         <Link
           href="/account"
-          className=" hover:text-accent-400 transition-colors"
+          className="text-base font-medium hover:text-accent-400 transition-colors rounded-md px-3 py-2 "
         >
           Guest area
         </Link>
