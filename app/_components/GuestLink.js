@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../_lib/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,12 +16,12 @@ export default function GuestLink() {
       {session?.user?.image ? (
         <Link
           href="/account"
-          className="hover:text-accent-400 transition-colors flex justify-between items-center gap-4"
+          className="hover:text-accent-400 transition-colors flex justify-between items-center gap-4 rounded-md px-3 py-2 text-base font-medium hover:bg-primary-900"
         >
           <span>Guest area</span>
-          <div className="relative h-9 aspect-square">
+          <div className=" hidden lg:block relative h-9 aspect-square">
             <Image
-              className="object-cover rounded-full"
+              className=" object-cover rounded-full"
               src={session.user.image}
               alt={session.user.name}
               fill
@@ -33,7 +33,7 @@ export default function GuestLink() {
       ) : (
         <Link
           href="/account"
-          className="hover:text-accent-400 transition-colors"
+          className=" hover:text-accent-400 transition-colors"
         >
           Guest area
         </Link>
