@@ -7,8 +7,8 @@ function Logo() {
     <Link href="/" className="flex items-center gap-4 z-10">
       <Image
         src={logo}
-        height="60"
-        width="60"
+        height="45"
+        width="45"
         quality={100}
         alt="The Wild Oasis logo"
       />
