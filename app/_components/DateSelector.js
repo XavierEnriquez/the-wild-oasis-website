@@ -39,7 +39,7 @@ function DateSelector({ settings, cabin, bookedDates }) {
   const endMonth = new Date(year, nextMonth);
 
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col md:justify-between">
       <DayPicker
         className="p-4 place-self-center"
         mode="range"
@@ -57,8 +57,8 @@ function DateSelector({ settings, cabin, bookedDates }) {
         }
       />
 
-      <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[4.5rem]">
-        <div className="flex items-baseline gap-6 ">
+      <div className="flex items-center justify-between bg-accent-500 text-primary-800 h-[4.5rem]">
+        <div className="flex items-baseline gap-6 px-4 md:px-10 lg:px-14 xl:px-4">
           <p className="flex gap-2 items-baseline">
             {discount > 0 ? (
               <>
