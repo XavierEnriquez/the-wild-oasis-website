@@ -32,7 +32,7 @@ export default async function Page({ params }) {
   const cabin = await getCabin(cabinId);
 
   return (
-    <div className="max-w-6xl mx-auto mt-8">
+    <div className=" mx-auto py-8">
       <Cabin cabin={cabin} />
 
       <div>
