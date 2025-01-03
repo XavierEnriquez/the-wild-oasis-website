@@ -7,8 +7,8 @@ function Cabin({ cabin }) {
     cabin;
 
   return (
-    <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
-      <div className="relative scale-[1.15] -translate-x-3">
+    <div className="flex flex-col lg:grid lg:grid-cols-[3fr_4fr] lg:gap-20 border border-primary-800 overflow-hidden mb-24">
+      <div className="relative h-96 lg:scale-[1.15] lg:-translate-x-3">
         <Image
           src={image}
           fill
@@ -18,8 +18,8 @@ function Cabin({ cabin }) {
         />
       </div>
 
-      <div>
-        <h3 className="text-accent-100 font-black text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]">
+      <div className="px-2 lg:py-3 lg:px-10 md:pt-10 ">
+        <h3 className="text-accent-100 font-black text-7xl mb-5 -translate-y-36 translate-x-72 lg:translate-y-0 lg:translate-x-[-254px] bg-primary-950 p-6 pb-1 lg:w-[150%]">
           Cabin {name}
         </h3>
 
