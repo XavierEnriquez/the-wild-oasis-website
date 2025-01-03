@@ -9,10 +9,11 @@ const josefin = Josefin_Sans({
 });
 
 import "@/app/_styles/globals.css";
+import "react-day-picker/dist/style.css";
 import Header from "@/app/_components/Header";
 import { ReservationProvider } from "@/app/_components/ReservationContext";
 import { SessionProvider } from "next-auth/react";
-import { AuthProvider } from "@/app/_components/AuthContext";
+import { AuthProvider } from "@/app/_lib/AuthContext";
 
 export const metadata = {
   title: {
@@ -33,12 +34,12 @@ export default function RootLayout({ children }) {
       <AuthProvider>
         <html lang="en">
           <body
-            className={`${josefin.className} antialiased bg-primary-950 text-primary-100 min-h-screen flex flex-col relative`}
+            className={`${josefin.className} antialiased bg-primary-950 text-primary-100 h-screen flex flex-col relative`}
           >
             <Header />
 
-            <div className="flex-1 px-8 py-12 grid">
-              <main className="max-w-7xl mx-auto w-full">
+            <div className="flex-1  grid">
+              <main className="mx-auto w-full max-w-[100rem] p-2 lg:p-8">
                 <ReservationProvider>{children}</ReservationProvider>
               </main>
             </div>
