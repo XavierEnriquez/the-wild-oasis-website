@@ -2,8 +2,7 @@ import { notFound } from "next/navigation";
 import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
 
-/////////////
-/// GET GUEST
+////// GET GUEST
 
 // Guests are uniquely identified by their email address
 export async function getGuest(email) {
@@ -17,7 +16,6 @@ export async function getGuest(email) {
   return data;
 }
 
-////////////////////
 ////// CREATE GUEST
 
 export async function createGuest(newGuest) {
@@ -31,7 +29,6 @@ export async function createGuest(newGuest) {
   return data;
 }
 
-///////////////////
 ////// UPDATE GUEST
 
 // The updatedFields is an object which should ONLY contain the updated data
@@ -50,8 +47,7 @@ export async function updateGuest(id, updatedFields) {
   return data;
 }
 
-/////////////
-/// GET ALL CABINS
+////// GET ALL CABINS
 
 export const getCabins = async function () {
   const { data, error } = await supabase
@@ -70,8 +66,7 @@ export const getCabins = async function () {
   return data;
 };
 
-/////////////
-/// GET SINGLE CABIN
+////// GET SINGLE CABIN
 
 export async function getCabin(id) {
   const { data, error } = await supabase
@@ -91,8 +86,7 @@ export async function getCabin(id) {
   return data;
 }
 
-/////////////
-/// GET CABIN PRICE
+////// GET CABIN PRICE
 
 export async function getCabinPrice(id) {
   const { data, error } = await supabase
@@ -108,8 +102,7 @@ export async function getCabinPrice(id) {
   return data;
 }
 
-/////////////
-/// GET ALL BOOKINGS
+////// GET ALL BOOKINGS
 
 export async function getBookings(guestId) {
   if (!guestId) return [];
@@ -130,8 +123,7 @@ export async function getBookings(guestId) {
   return data;
 }
 
-/////////////
-/// GET SINGLE BOOKING
+////// GET SINGLE BOOKING
 
 export async function getBooking(id) {
   const { data, error, count } = await supabase
@@ -148,8 +140,7 @@ export async function getBooking(id) {
   return data;
 }
 
-/////////////
-/// GET BOOKED DATES BY CABIN
+////// GET BOOKED DATES BY CABIN
 
 export async function getBookedDatesByCabinId(cabinId) {
   let today = new Date();
@@ -181,7 +172,6 @@ export async function getBookedDatesByCabinId(cabinId) {
   return bookedDates;
 }
 
-//////////////////////
 ////// CREATE BOOKING
 
 export async function createBooking(newBooking) {
@@ -200,7 +190,6 @@ export async function createBooking(newBooking) {
   return data;
 }
 
-/////////////////////
 ////// UPDATE BOOKING
 
 export async function updateBooking(id, updatedFields) {
@@ -218,7 +207,6 @@ export async function updateBooking(id, updatedFields) {
   return data;
 }
 
-/////////////////////
 ////// DELETE BOOKING
 
 export async function deleteBooking(id) {
@@ -231,7 +219,6 @@ export async function deleteBooking(id) {
   return data;
 }
 
-////////////////////
 ////// GET SETTINGS
 
 export async function getSettings() {
