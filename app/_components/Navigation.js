@@ -16,27 +16,7 @@ export default function Navigation() {
   // const session = await auth();
 
   return (
-    <nav className="z-10 text-xl">
-      {/* <ul className="flex gap-16 items-center">
-        <li>
-          <Link
-            href="/cabins"
-            className="hover:text-accent-400 transition-colors"
-          >
-            Cabins
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/about"
-            className="hover:text-accent-400 transition-colors"
-          >
-            About
-          </Link>
-        </li>
-
-        <GuestLink />
-      </ul> */}
+    <nav className="z-40 text-xl">
       <menu className="hidden lg:block" id="desktop-menu">
         <ul className="flex gap-12 items-center px-2">
           <li>
@@ -51,7 +31,7 @@ export default function Navigation() {
           <li>
             <Link
               href="/about"
-              className="block rounded-md px-3 py-2 text-base font-medium  hover:bg-primary-900 hover:text-accent-400 transition-colors"
+              className="block rounded-md px-3 py-2  text-base font-medium hover:bg-primary-900 hover:text-accent-400 transition-colors"
             >
               About
             </Link>
@@ -65,7 +45,7 @@ export default function Navigation() {
           <ul
             className={`bg-primary-900 ${
               isHidden ? "hidden" : "absolute"
-            } top-9 right-9 rounded-md min-w-60 space-y-1 p-8 transition-transform`}
+            } top-9 right-0 rounded-md min-w-60 space-y-2 p-8 transition-transform`}
             onClick={() => setIsHidden(!isHidden)}
           >
             <li>
@@ -80,7 +60,7 @@ export default function Navigation() {
             <li>
               <Link
                 href="/about"
-                className="block rounded-md px-3 py-2 text-base font-medium  hover:bg-primary-900 hover:text-accent-400 transition-colors"
+                className="block rounded-md px-3 py-2 text-base font-medium hover:bg-primary-900 hover:text-accent-400 transition-colors"
               >
                 About
               </Link>
