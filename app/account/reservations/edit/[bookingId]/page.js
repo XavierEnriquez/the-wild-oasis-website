@@ -4,11 +4,11 @@ import { auth } from "@/app/_lib/auth";
 import { getBooking, getBookings, getCabin } from "@/app/_lib/data-service";
 
 export default async function Page({ params }) {
-  const { bookingId } = await params;
-
   // Check if user is logged-in
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
+
+  const { bookingId } = await params;
 
   //  get the IDs of all bookings made by the user.
   const guestBookings = await getBookings(session.user.guestId);
