@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
             <Header />
 
             <div className="flex-1  grid">
-              <main className="mx-auto w-full max-w-[100rem] p-2 lg:p-8">
+              <main className="mx-auto w-full max-w-[100rem] p-2 lg:p-8 ">
                 <ReservationProvider>{children}</ReservationProvider>
               </main>
             </div>
