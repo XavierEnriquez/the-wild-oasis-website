@@ -113,7 +113,7 @@ export async function getBookings(guestId) {
       "id, created_at, startDate, endDate, numNights, numGuest, totalPrice, guestId, cabinId, cabins(name, image)"
     )
     .eq("guestId", guestId)
-    .order("startDate");
+    .order("startDate", { ascending: false });
 
   if (error) {
     console.error(error);
@@ -140,9 +140,9 @@ export async function getBooking(id) {
   return data;
 }
 
-////// GET BOOKED DATES BY CABIN
+////// GET BOOKED DATES BY CABIN ID
 
-export async function getBookedDatesByCabinId(cabinId) {
+export async function getBookedDatesByCabinId(cabinid) {
   let today = new Date();
   today.setUTCHours(0, 0, 0, 0);
   today = today.toISOString();
@@ -151,7 +151,7 @@ export async function getBookedDatesByCabinId(cabinId) {
   const { data, error } = await supabase
     .from("bookings")
     .select("*")
-    .eq("cabinId", cabinId)
+    .eq("cabinId", cabinid)
     .or(`startDate.gte.${today},status.eq.checked-in`);
 
   if (error) {
