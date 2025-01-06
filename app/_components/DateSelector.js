@@ -21,8 +21,9 @@ function isAlreadyBooked(range, datesArr) {
 }
 
 function DateSelector({ settings, cabin, bookedDates }) {
+  // const defaultClassNames = getDefaultClassNames();
+  // console.log(defaultClassNames);
   const { range, setRange, resetRange } = useReservation();
-
   const displayRange = isAlreadyBooked(range, bookedDates) ? {} : range;
 
   const { regularPrice, discount } = cabin;
@@ -40,25 +41,28 @@ function DateSelector({ settings, cabin, bookedDates }) {
 
   return (
     <div className="flex flex-col md:justify-between">
-      <DayPicker
-        className="p-4 place-self-center"
-        mode="range"
-        onSelect={setRange}
-        selected={displayRange}
-        min={minBookingLength}
-        max={maxBookingLength}
-        startMonth={today}
-        endMonth={endMonth}
-        captionLayout="dropdown"
-        numberOfMonths={2}
-        disabled={(curDate) =>
-          isPast(curDate) ||
-          bookedDates.some((date) => isSameDay(date, curDate))
-        }
-      />
+      <div className="max-w-min md:max-w-none self-center m-6">
+        <DayPicker
+          hideNavigation
+          className=""
+          mode="range"
+          onSelect={setRange}
+          selected={displayRange}
+          min={minBookingLength}
+          max={maxBookingLength}
+          startMonth={today}
+          endMonth={endMonth}
+          captionLayout="dropdown"
+          numberOfMonths={2}
+          disabled={(curDate) =>
+            isPast(curDate) ||
+            bookedDates.some((date) => isSameDay(date, curDate))
+          }
+        />
+      </div>
 
-      <div className="flex items-center justify-between bg-accent-500 text-primary-800 h-[4.5rem]">
-        <div className="flex items-baseline gap-6 px-4 md:px-10 lg:px-14 xl:px-4">
+      <div className="flex justify-center md:justify-between flex-wrap gap-y-4 bg-accent-500 text-primary-800  py-4 px-4 md:px-10 lg:px-14 xl:px-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-6 ">
           <p className="flex gap-2 items-baseline">
             {discount > 0 ? (
               <>
@@ -87,7 +91,7 @@ function DateSelector({ settings, cabin, bookedDates }) {
 
         {range?.from || range?.to ? (
           <button
-            className="border border-primary-800 py-2 px-4 text-sm font-semibold"
+            className="ml-auto border border-primary-800 py-2 px-4 text-sm font-semibold"
             onClick={resetRange}
           >
             Clear
