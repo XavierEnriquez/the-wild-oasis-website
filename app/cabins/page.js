@@ -5,7 +5,7 @@ import Spinner from "../_components/Spinner";
 import Filter from "../_components/Filter";
 import ReservationReminder from "../_components/ReservationReminder";
 
-// export const revalidate = 3600;
+export const revalidate = 3600;
 // nextjs function revalidate is used to re-fech the cached data in a client component. The passed value is in seconds.
 // It's no longer needed in this component because by adding the searchParams hook to the function Page below, it
 // makes this component a server or dynamic component and no longer a client or static component.
@@ -17,17 +17,16 @@ export const metadata = {
 // Converted to an async function and awaited searchParams as required by nextjs
 export default async function Page({ searchParams }) {
   const { capacity } = await searchParams;
-
   const filter = capacity ?? "all";
 
   // Notice the CabinList component is inside a nextjs Suspense component.
   // This is because CabinList is optout of caching therefore needs to be rendered after it has finished fetching.
   return (
-    <div>
+    <div className="px-2 py-4">
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
         Our Luxury Cabins
       </h1>
-      <p className="text-primary-200 text-lg mb-10">
+      <p className="text-primary-200 text-lg mb-10 max-w-3xl">
         Luxurious yet cozy cabins, located right in the heart of the Italian
         Dolomites. Imagine waking up to beautiful mountain views, spending your
         days exploring the dark forests around, or just relaxing in your private
