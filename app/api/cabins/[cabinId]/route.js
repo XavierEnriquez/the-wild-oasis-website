@@ -1,4 +1,16 @@
-import { getBookedDatesByCabinId, getCabin } from "@/app/_lib/data-service";
+import {
+  getBookedDatesByCabinId,
+  getCabin,
+  getCabins,
+} from "@/app/_lib/data-service";
+
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+
+  const ids = cabins.map((cabin) => ({ cabinId: String(cabin.id) }));
+
+  return ids;
+}
 
 export async function GET(request, { params }) {
   const { cabinId } = await params;
