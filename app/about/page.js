@@ -48,6 +48,7 @@ export default async function Page() {
           alt="Family sitting around a fire pit in front of cabin"
           placeholder="blur"
           quality={80}
+          className="rounded-lg"
         />
       </div>
 
@@ -60,6 +61,7 @@ export default async function Page() {
           alt="Family that manages The Wild Oasis"
           placeholder="blur"
           quality={80}
+          className="rounded-lg"
         />
       </div>
 
@@ -87,7 +89,7 @@ export default async function Page() {
           <div>
             <Link
               href="/cabins"
-              className="inline-block mt-4 bg-accent-500 px-8 py-5 text-primary-800 text-lg font-semibold hover:bg-accent-600 transition-all"
+              className="inline-block mt-4 bg-accent-500 px-8 py-5 text-primary-800 text-lg font-semibold hover:text-primary-100 hover:bg-accent-600 transition-all rounded-lg"
             >
               Explore our luxury cabins
             </Link>
