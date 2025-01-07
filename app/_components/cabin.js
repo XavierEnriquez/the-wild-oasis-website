@@ -7,7 +7,7 @@ function Cabin({ cabin }) {
     cabin;
 
   return (
-    <div className="flex flex-col lg:grid lg:grid-cols-[3fr_4fr] lg:gap-20 border border-primary-800 overflow-hidden mb-24">
+    <div className="flex flex-col lg:grid lg:grid-cols-[3fr_4fr] lg:gap-20 border border-primary-800 overflow-hidden mb-24 rounded-lg">
       <div className="relative h-96 lg:scale-[1.15] lg:-translate-x-3">
         <Image
           src={image}
